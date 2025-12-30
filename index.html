@@ -1,0 +1,2257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>China Adventure 2026 | Jan 4-18</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: #141414;
+            --bg-card-hover: #1a1a1a;
+            --accent-red: #e63946;
+            --accent-gold: #d4a574;
+            --accent-jade: #4a9c8c;
+            --text-primary: #f5f5f5;
+            --text-secondary: #a0a0a0;
+            --text-muted: #666;
+            --border: #2a2a2a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1515 50%, #0a0a0a 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('Jiuzhaigou Picture (1).jpg') center/cover;
+            opacity: 0.15;
+            filter: grayscale(30%);
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(to top, var(--bg-dark), transparent);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero-subtitle {
+            font-size: 0.9rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.2s;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.4s;
+        }
+
+        .hero-title span {
+            display: block;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-dates {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.6s;
+        }
+
+        .hero-route {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            max-width: 900px;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.8s;
+        }
+
+        .route-city {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .route-city::after {
+            content: '→';
+            color: var(--accent-red);
+        }
+
+        .route-city:last-child::after {
+            display: none;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 1s, bounce 2s ease infinite 1.5s;
+        }
+
+        .scroll-indicator svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--accent-gold);
+        }
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 2rem;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .nav-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-link {
+            padding: 1rem 1.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            white-space: nowrap;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--text-primary);
+            border-bottom-color: var(--accent-red);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 600;
+        }
+
+        /* Itinerary Grid */
+        .itinerary-grid {
+            display: grid;
+            gap: 1px;
+            background: var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .day-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: 80px 120px 1fr;
+            gap: 1.5rem;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .day-card:hover {
+            background: var(--bg-card-hover);
+        }
+
+        .day-date {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+        }
+
+        .day-location {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .day-location.travel {
+            color: var(--accent-jade);
+        }
+
+        .day-activities {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* City Sections */
+        .city-section {
+            margin-bottom: 5rem;
+        }
+
+        .city-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            min-height: 400px;
+        }
+
+        .city-image {
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .city-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .city-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .city-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .city-name {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .city-dates {
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+        }
+
+        .city-description {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        /* Info Cards */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .info-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-2px);
+        }
+
+        .info-card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--accent-red), #c41e3a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .info-card-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .info-card-content {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .info-card-content ul {
+            list-style: none;
+            margin-top: 0.75rem;
+        }
+
+        .info-card-content li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .info-card-content li:last-child {
+            border-bottom: none;
+        }
+
+        .info-card-content li::before {
+            content: '•';
+            color: var(--accent-gold);
+        }
+
+        /* Food Section */
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .food-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .food-card-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .food-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .food-card:hover .food-card-image img {
+            transform: scale(1.1);
+        }
+
+        .food-card-content {
+            padding: 1.5rem;
+        }
+
+        .food-card-city {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            margin-bottom: 0.5rem;
+        }
+
+        .food-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .food-item {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .food-item:last-child {
+            border-bottom: none;
+        }
+
+        .food-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .food-name .chinese {
+            color: var(--accent-gold);
+            font-size: 0.85rem;
+        }
+
+        .food-desc {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* Hiking Section */
+        .hiking-cards {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .hiking-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .hiking-card:hover {
+            border-color: var(--accent-jade);
+        }
+
+        .hiking-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hiking-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hiking-tag {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            background: var(--border);
+            color: var(--text-secondary);
+        }
+
+        .hiking-tag.challenging {
+            background: rgba(230, 57, 70, 0.2);
+            color: var(--accent-red);
+        }
+
+        .hiking-tag.moderate {
+            background: rgba(212, 165, 116, 0.2);
+            color: var(--accent-gold);
+        }
+
+        .hiking-highlights {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .hiking-route {
+            background: rgba(74, 156, 140, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--accent-jade);
+        }
+
+        .hiking-tip {
+            margin-top: 1rem;
+            padding: 0.75rem 1rem;
+            background: rgba(212, 165, 116, 0.1);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+        }
+
+        /* Weather Section */
+        .weather-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .weather-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .weather-card.clear {
+            border-color: var(--accent-jade);
+        }
+
+        .weather-card.foggy {
+            border-color: var(--text-muted);
+        }
+
+        .weather-card.rainy {
+            border-color: var(--accent-red);
+        }
+
+        .weather-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .weather-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .weather-activities {
+            text-align: left;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .weather-activities li {
+            padding: 0.5rem 0;
+            list-style: none;
+        }
+
+        /* Transport Section */
+        .transport-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .transport-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-red), var(--accent-gold), var(--accent-jade));
+        }
+
+        .transport-item {
+            position: relative;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .transport-item::before {
+            content: '';
+            position: absolute;
+            left: -2.35rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+            border: 3px solid var(--bg-dark);
+        }
+
+        .transport-route {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .transport-details {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .transport-details span {
+            display: inline-block;
+            margin-right: 1.5rem;
+        }
+
+        /* Hotels Section */
+        .hotel-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            margin-bottom: 1.5rem;
+        }
+
+        .hotel-city {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .hotel-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hotel-price {
+            color: var(--accent-jade);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .hotel-tip {
+            padding: 1rem;
+            background: rgba(230, 57, 70, 0.1);
+            border-radius: 8px;
+            color: var(--accent-red);
+            font-size: 0.85rem;
+        }
+
+        /* Accordion for daily itinerary */
+        .accordion {
+            background: var(--bg-card);
+            border-radius: 12px;
+            margin-bottom: 0.5rem;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 1.25rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: var(--bg-card-hover);
+        }
+
+        .accordion-title {
+            font-weight: 600;
+        }
+
+        .accordion-date {
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion.open .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .accordion.open .accordion-content {
+            max-height: 2000px;
+        }
+
+        .accordion-body {
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-time {
+            min-width: 80px;
+            color: var(--accent-jade);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .timeline-activity {
+            flex: 1;
+        }
+
+        .timeline-activity h4 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-activity p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Quick Links */
+        .quick-links {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .quick-link {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--border);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quick-link:hover,
+        .quick-link.active {
+            background: var(--accent-gold);
+            transform: scale(1.3);
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .city-header {
+                grid-template-columns: 1fr;
+            }
+
+            .city-image {
+                height: 250px;
+            }
+
+            .day-card {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .hiking-card {
+                grid-template-columns: 1fr;
+            }
+
+            .weather-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-links {
+                display: none;
+            }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+        }
+
+        footer a {
+            color: var(--accent-gold);
+            text-decoration: none;
+        }
+
+        /* Search */
+        .search-container {
+            margin-bottom: 2rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-subtitle">Adventure Awaits</p>
+            <h1 class="hero-title"><span>China 2026</span></h1>
+            <p class="hero-dates">January 4 – 18 · 15 Days</p>
+            <div class="hero-route">
+                <span class="route-city">Chengdu</span>
+                <span class="route-city">Jiuzhaigou</span>
+                <span class="route-city">Chongqing</span>
+                <span class="route-city">Zhangjiajie</span>
+                <span class="route-city">Furong</span>
+                <span class="route-city">Fenghuang</span>
+                <span class="route-city">Changsha</span>
+                <span class="route-city">Bangkok</span>
+            </div>
+        </div>
+        <div class="scroll-indicator" onclick="document.getElementById('overview').scrollIntoView({ behavior: 'smooth' })">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#overview" class="nav-link active">Overview</a>
+            <a href="#itinerary" class="nav-link">Day by Day</a>
+            <a href="#chengdu" class="nav-link">Chengdu</a>
+            <a href="#jiuzhaigou" class="nav-link">Jiuzhaigou</a>
+            <a href="#chongqing" class="nav-link">Chongqing</a>
+            <a href="#zhangjiajie" class="nav-link">Zhangjiajie</a>
+            <a href="#fenghuang" class="nav-link">Fenghuang</a>
+            <a href="#changsha" class="nav-link">Changsha</a>
+            <a href="#food" class="nav-link">Food Guide</a>
+            <a href="#transport" class="nav-link">Transport</a>
+            <a href="#hotels" class="nav-link">Hotels</a>
+        </div>
+    </nav>
+
+    <!-- Overview Section -->
+    <section id="overview">
+        <div class="section-header">
+            <p class="section-label">The Journey</p>
+            <h2 class="section-title">Trip Overview</h2>
+        </div>
+
+        <div class="itinerary-grid">
+            <div class="day-card">
+                <span class="day-date">Jan 4</span>
+                <span class="day-location">Chengdu</span>
+                <span class="day-activities">Arrival day – settle in, explore Chunxi Road & Taikoo Li</span>
+            </div>
+            <div class="day-card">
+                <span class="day-date">Jan 5</span>
+                <span class="day-location">Chengdu</span>
+                <span class="day-activities">Wenshu Monastery, People's Park tea, Kuanzhai Alley, Jinli Ancient
+                    Street</span>
+            </div>
+            <div class="day-card">
+                <span class="day-date">Jan 6</span>
+                <span class="day-location">Chengdu</span>
+                <span class="day-activities">Wuhou Shrine, Dujiangyan, Dongjiao Jiyi, Face-Changing Show</span>
+            </div>
+            <div class="day-card">
+                <span class="day-date">Jan 7</span>
+                <span class="day-location travel">→ Jiuzhaigou</span>
+                <span class="day-activities">HSR to Huanglongjiuzhai (~2hr), bus to park (~2hr). Hike half the
+                    park.</span>
+            </div>
+            <div class="day-card">
+                <span class="day-date">Jan 8</span>
+                <span class="day-location travel">Jiuzhaigou → Chengdu</span>
+                <span class="day-activities">Hike other half of park. Return travel (~4hr), evening in Chengdu.</span>
+            </div>
+            <div class="day-card">
+                <span class="day-date">Jan 9</span>
+                <span class="day-location travel">→ Chongqing</span>
+                <span class="day-activities">1.5hr HSR. Jiefangbei, Bayi Street, Yangtze Cableway, Hongya Cave</span>
+            </div>
+            <div class="day-card">
+                <span class="day-date">Jan 10</span>
+                <span class="day-location">Chongqing</span>
+                <span class="day-activities">Ciqikou, Liziba Station, Xiaohao Lane, Quanyinqiao, 1949 Performance</span>
+            </div>
+            <div class="day-card">
+                <span class="day-date">Jan 11</span>
+                <span class="day-location">Chongqing</span>
+                <span class="day-activities">Shibata, Eling Park, Longmenhao, Danzishi, Nanbin Road night walk</span>
+            </div>
+            <div class="day-card">
+                <span class="day-date">Jan 12</span>
+                <span class="day-location travel">→ Zhangjiajie</span>
+                <span class="day-activities">2-3hr HSR to Zhangjiajie West. Bus/taxi to Wulingyuan (~40min).</span>
+            </div>
+            <div class="day-card">
+                <span class="day-date">Jan 13</span>
+                <span class="day-location">Zhangjiajie</span>
+                <span class="day-activities">National Forest Park – Yuanjiajie, Bailong Elevator, hiking trails</span>
+            </div>
+            <div class="day-card">
+                <span class="day-date">Jan 14</span>
+                <span class="day-location">Zhangjiajie</span>
+                <span class="day-activities">National Forest Park – Tianzi Mountain, Golden Whip Stream hike</span>
+            </div>
+            <div class="day-card">
+                <span class="day-date">Jan 15</span>
+                <span class="day-location">Zhangjiajie</span>
+                <span class="day-activities">Tianmen Mountain – glass skywalk, 999 steps, world's longest cable
+                    car</span>
+            </div>
+            <div class="day-card">
+                <span class="day-date">Jan 16</span>
+                <span class="day-location travel">→ Furong → Fenghuang</span>
+                <span class="day-activities">HSR to Furong (25 min), explore waterfall. Evening HSR to Fenghuang (40
+                    min).</span>
+            </div>
+            <div class="day-card">
+                <span class="day-date">Jan 17</span>
+                <span class="day-location travel">Fenghuang → Changsha</span>
+                <span class="day-activities">Morning in Fenghuang. Afternoon HSR to Changsha (2.5hr). Evening: stinky
+                    tofu!</span>
+            </div>
+            <div class="day-card">
+                <span class="day-date">Jan 18</span>
+                <span class="day-location travel">Changsha → Bangkok</span>
+                <span class="day-activities">Airport by 10:30 AM. Flight 12:55 PM.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chengdu Section -->
+    <section id="chengdu" class="city-section">
+        <div class="city-header">
+            <div class="city-image">
+                <img src="Chengdu Picture.jpg" alt="Chengdu">
+            </div>
+            <div class="city-info">
+                <h2 class="city-name">Chengdu</h2>
+                <p class="city-dates">JAN 4–6, 8 · 4 NIGHTS</p>
+                <p class="city-description">The laid-back capital of Sichuan. Famous for pandas, spicy food, teahouses,
+                    and face-changing opera. Your base for the Jiuzhaigou day trip.</p>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <div class="info-card-icon">🏨</div>
+                            <span class="info-card-title">Where to Stay</span>
+                        </div>
+                        <div class="info-card-content">
+                            <strong>Chunxi Road / Taikoo Li</strong> – Central, shopping, nightlife, metro accessible
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <div class="info-card-icon">🍜</div>
+                            <span class="info-card-title">Food Streets</span>
+                        </div>
+                        <div class="info-card-content">
+                            Jinli Street, Kuanzhai Alley, Yulin area
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chengdu Daily Itinerary -->
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 1.5rem;">Daily Itinerary
+        </h3>
+
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div>
+                    <span class="accordion-title">Sunday, January 5th</span>
+                    <span class="accordion-date"> – Temples & Teahouses</span>
+                </div>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <div class="timeline-item">
+                        <span class="timeline-time">8–11 AM</span>
+                        <div class="timeline-activity">
+                            <h4>Wenshu Monastery + Wenshufang Old Street</h4>
+                            <p>Early morning is peaceful, with monks chanting and tea houses opening. Breakfast or
+                                morning tea here.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">11:30 AM</span>
+                        <div class="timeline-activity">
+                            <h4>People's Park</h4>
+                            <p>Laid-back tea session at Heming Teahouse. Locals gather for mahjong, singing, and social
+                                chatter.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">2:30 PM</span>
+                        <div class="timeline-activity">
+                            <h4>Kuanzhai Alley (Wide & Narrow Alleys)</h4>
+                            <p>Late afternoon for browsing boutiques and photography. Restored Qing-era courtyards with
+                                cafes.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">5–10 PM</span>
+                        <div class="timeline-activity">
+                            <h4>Jinli Ancient Street</h4>
+                            <p>Catch both daytime charm and red lanterns after 8 PM. Perfect for dinner from snack
+                                vendors.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div>
+                    <span class="accordion-title">Tuesday, January 6th</span>
+                    <span class="accordion-date"> – History & Performance</span>
+                </div>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <div class="timeline-item">
+                        <span class="timeline-time">8 AM</span>
+                        <div class="timeline-activity">
+                            <h4>Wuhou Shrine</h4>
+                            <p>Visit early to avoid crowds. Historic temple dedicated to Zhuge Liang.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">12 PM</span>
+                        <div class="timeline-activity">
+                            <h4>Dujiangyan Irrigation System</h4>
+                            <p>~1.5hr travel each way. Ancient engineering marvel, UNESCO World Heritage Site.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">4 PM</span>
+                        <div class="timeline-activity">
+                            <h4>Dongjiao Jiyi</h4>
+                            <p>Creative, industrial-style area for cafes and art shops. Great for golden-hour photos.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">8 PM</span>
+                        <div class="timeline-activity">
+                            <h4>Face-Changing Show at Jinjiang Theatre</h4>
+                            <p>70-minute show. Afterward: Chengdu Twin Towers light show after 9 PM, view from Jiaozi
+                                Ring bridge.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Jiuzhaigou Section -->
+    <section id="jiuzhaigou" class="city-section">
+        <div class="city-header">
+            <div class="city-info">
+                <h2 class="city-name">Jiuzhaigou</h2>
+                <p class="city-dates">JAN 7–8 · DAY TRIP</p>
+                <p class="city-description">A fairy-tale valley of turquoise lakes, cascading waterfalls, and snow-dusted forests. UNESCO World Heritage Site known as "Nine Village Valley" – one of China's most breathtaking natural wonders.</p>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <div class="info-card-icon">🎫</div>
+                            <span class="info-card-title">Park Info</span>
+                        </div>
+                        <div class="info-card-content">
+                            <strong>Entry:</strong> ~¥169 + ¥90 shuttle bus<br>
+                            <strong>Hours:</strong> 8:00 AM – 5:00 PM (winter)
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <div class="info-card-icon">📍</div>
+                            <span class="info-card-title">Must-See Spots</span>
+                        </div>
+                        <div class="info-card-content">
+                            Five Flower Lake, Pearl Shoal Waterfall, Nuorilang Falls, Mirror Lake, Long Lake
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="city-image">
+                <img src="Jiuzhaigou Picture (1).jpg" alt="Jiuzhaigou">
+            </div>
+        </div>
+
+        <!-- Jiuzhaigou Daily Itinerary -->
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 1.5rem;">Daily Itinerary</h3>
+
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div>
+                    <span class="accordion-title">Tuesday, January 7th</span>
+                    <span class="accordion-date"> – Journey to Paradise</span>
+                </div>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <div class="timeline-item">
+                        <span class="timeline-time">6:30 AM</span>
+                        <div class="timeline-activity">
+                            <h4>HSR to Huanglongjiuzhai Station</h4>
+                            <p>Depart Chengdu East. ~2 hour scenic journey through mountains.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">10:30 AM</span>
+                        <div class="timeline-activity">
+                            <h4>Arrive at Jiuzhaigou Park</h4>
+                            <p>Bus or taxi from station (~2hr). Enter park, take shuttle to Long Lake (furthest point).</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">11 AM–5 PM</span>
+                        <div class="timeline-activity">
+                            <h4>Explore Rize Valley</h4>
+                            <p>Long Lake → Five Flower Lake → Pearl Shoal → Mirror Lake. Work your way down via boardwalks.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">Evening</span>
+                        <div class="timeline-activity">
+                            <h4>Stay in Zhangzha Town</h4>
+                            <p>Hotels near park entrance. Rest up for day 2!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div>
+                    <span class="accordion-title">Wednesday, January 8th</span>
+                    <span class="accordion-date"> – Waterfalls & Return</span>
+                </div>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <div class="timeline-item">
+                        <span class="timeline-time">8 AM</span>
+                        <div class="timeline-activity">
+                            <h4>Re-enter Park Early</h4>
+                            <p>Beat the crowds! Head to Shuzheng Valley.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">8–12 PM</span>
+                        <div class="timeline-activity">
+                            <h4>Shuzheng & Zechawa Valleys</h4>
+                            <p>Nuorilang Waterfall, Shuzheng Lakes, Tiger Lake. Different scenery from day 1.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">1 PM</span>
+                        <div class="timeline-activity">
+                            <h4>Return Journey</h4>
+                            <p>Bus to station, HSR back to Chengdu (~4hr total). Evening free in Chengdu.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Jiuzhaigou Hiking Routes -->
+        <div style="margin-top: 3rem;">
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 1.5rem;">Hiking Routes</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem;">Jiuzhaigou is a Y-shaped valley with 3 connected valleys and 73km of boardwalks. Strategy: Take the shuttle bus UP, walk DOWN each valley to maximize scenery.</p>
+
+            <div class="hiking-cards">
+                <div class="hiking-card">
+                    <div>
+                        <h3 class="hiking-title">Rize Valley (日则沟)</h3>
+                        <div class="hiking-meta">
+                            <span class="hiking-tag moderate">Moderate</span>
+                            <span class="hiking-tag">Half Day</span>
+                            <span class="hiking-tag">8.5 km</span>
+                        </div>
+                        <p class="hiking-highlights">The most spectacular valley! Crystal-clear lakes, pristine waterfalls, and the famous Five Flower Lake – considered the most beautiful in the park.</p>
+                        <div class="hiking-route">
+                            <strong>Route:</strong> Bus to Arrow Bamboo Lake → Swan Lake → Panda Lake & Waterfall → Five Flower Lake → Pearl Shoal Waterfall → Mirror Lake → Nuorilang Junction
+                        </div>
+                        <div class="hiking-tip">💡 Best for Day 1 afternoon – the lakes reflect perfectly in calm weather!</div>
+                    </div>
+                </div>
+
+                <div class="hiking-card">
+                    <div>
+                        <h3 class="hiking-title">Shuzheng Valley (树正沟)</h3>
+                        <div class="hiking-meta">
+                            <span class="hiking-tag moderate">Moderate</span>
+                            <span class="hiking-tag">Half Day</span>
+                            <span class="hiking-tag">8 km</span>
+                        </div>
+                        <p class="hiking-highlights">The main valley with the most lakes! Features stunning terraced lakes, traditional Tibetan villages, and the widest waterfall in the park.</p>
+                        <div class="hiking-route">
+                            <strong>Route:</strong> Nuorilang Waterfall (270m wide!) → Rhinoceros Lake → Tiger Lake → Shuzheng Lakes & Waterfall → Spark Lake → Reed Lake → Bonsai Shoal → Exit
+                        </div>
+                        <div class="hiking-tip">💡 Best for Day 2 morning – walk through Tibetan villages and pass 19 connected lakes!</div>
+                    </div>
+                </div>
+
+                <div class="hiking-card">
+                    <div>
+                        <h3 class="hiking-title">Zechawa Valley (则查洼沟)</h3>
+                        <div class="hiking-meta">
+                            <span class="hiking-tag">Easy</span>
+                            <span class="hiking-tag">1-2 Hours</span>
+                            <span class="hiking-tag">1.7 km</span>
+                        </div>
+                        <p class="hiking-highlights">Short but stunning! Home to Long Lake (largest & deepest) and the magical Five-Colored Pool with its vivid turquoise waters.</p>
+                        <div class="hiking-route">
+                            <strong>Route:</strong> Bus to Long Lake (highest point at 3,100m) → Walk down to Five-Colored Pool → Bus back to Nuorilang
+                        </div>
+                        <div class="hiking-tip">💡 Long Lake often freezes in January – magical ice scenery! Add this to Day 1 if time permits.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Winter Tips -->
+            <div style="margin-top: 2rem;">
+                <div class="section-header">
+                    <p class="section-label">January Visit</p>
+                    <h3 class="section-title" style="font-size: 1.5rem;">Winter Hiking Tips</h3>
+                </div>
+
+                <div class="weather-grid" style="grid-template-columns: repeat(2, 1fr);">
+                    <div class="weather-card foggy">
+                        <div class="weather-icon">🥶</div>
+                        <h3 class="weather-title">Weather & Gear</h3>
+                        <ul class="weather-activities">
+                            <li>Temps: -2°C to 7°C (28-45°F)</li>
+                            <li>Wear layers + down jacket</li>
+                            <li>Waterproof hiking shoes essential</li>
+                            <li>Boardwalks can be icy – watch your step!</li>
+                            <li>Sunglasses for snow glare</li>
+                        </ul>
+                    </div>
+
+                    <div class="weather-card clear">
+                        <div class="weather-icon">✨</div>
+                        <h3 class="weather-title">Winter Advantages</h3>
+                        <ul class="weather-activities">
+                            <li>Off-season: fewer crowds!</li>
+                            <li>Ticket only ¥80 (vs ¥169 peak)</li>
+                            <li>Frozen waterfalls & ice flowers on lakes</li>
+                            <li>Snow-dusted mountains backdrop</li>
+                            <li>Mystical morning mist over lakes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chongqing Section -->
+    <section id="chongqing" class="city-section">
+        <div class="city-header">
+            <div class="city-info">
+                <h2 class="city-name">Chongqing</h2>
+                <p class="city-dates">JAN 9–11 · 3 NIGHTS</p>
+                <p class="city-description">The mountain city! A vertical metropolis built into cliffs where trains pass
+                    through buildings. Famous for the fieriest hotpot in China and cyberpunk vibes.</p>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <div class="info-card-icon">🏨</div>
+                            <span class="info-card-title">Where to Stay</span>
+                        </div>
+                        <div class="info-card-content">
+                            <strong>Jiefangbei CBD</strong> – Walk to Hongya Cave, Liberation Monument, food streets
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <div class="info-card-icon">🍜</div>
+                            <span class="info-card-title">Food Streets</span>
+                        </div>
+                        <div class="info-card-content">
+                            Bayi Food Street, Ciqikou Ancient Town, Nanmenkou
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="city-image">
+                <img src="Chongqing Picture.jpg" alt="Chongqing">
+            </div>
+        </div>
+
+        <!-- Chongqing Daily Itinerary -->
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 1.5rem;">Daily Itinerary
+        </h3>
+
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div>
+                    <span class="accordion-title">Friday, January 9th</span>
+                    <span class="accordion-date"> – Arrival & Hongya Cave</span>
+                </div>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <div class="timeline-item">
+                        <span class="timeline-time">1–4 PM</span>
+                        <div class="timeline-activity">
+                            <h4>Jiefangbei & Bayi Street</h4>
+                            <p>Central business district around Liberation Monument. Bayi Street is packed with local
+                                street snacks.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">4–6 PM</span>
+                        <div class="timeline-activity">
+                            <h4>Yangtze River Cableway</h4>
+                            <p>Dramatic aerial tramway crossing the Yangtze. Ride at sunset to see city lights turn on.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">6:30 PM</span>
+                        <div class="timeline-activity">
+                            <h4>Hongya Cave</h4>
+                            <p>11-floor stilt houses built into cliffside. "Spirited Away" vibes! Lights turn on around
+                                6 PM. Dinner here.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">9 PM</span>
+                        <div class="timeline-activity">
+                            <h4>Qiansimen Bridge Night Walk</h4>
+                            <p>Beautiful views of the illuminated city skyline.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div>
+                    <span class="accordion-title">Saturday, January 10th</span>
+                    <span class="accordion-date"> – Ancient Town & Train Building</span>
+                </div>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <div class="timeline-item">
+                        <span class="timeline-time">9 AM</span>
+                        <div class="timeline-activity">
+                            <h4>Ciqikou Ancient Town</h4>
+                            <p>Well-preserved old town on a mountainside. Traditional architecture, local crafts, snack
+                                shops.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">1 PM</span>
+                        <div class="timeline-activity">
+                            <h4>Liziba Station</h4>
+                            <p>Famous station where the monorail passes directly through a residential building!</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">3 PM</span>
+                        <div class="timeline-activity">
+                            <h4>Xiaohao Lane</h4>
+                            <p>Cute cafes, vertical city to walk around.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">6 PM</span>
+                        <div class="timeline-activity">
+                            <h4>Quanyinqiao Dinner</h4>
+                            <p>Local hotpot or barbecue. Locals' favourite shopping and food centre.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">7:30 PM</span>
+                        <div class="timeline-activity">
+                            <h4>"Chongqing 1949" Performance</h4>
+                            <p>1949 Grand Theater. Show lasts ~80 mins.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div>
+                    <span class="accordion-title">Sunday, January 11th</span>
+                    <span class="accordion-date"> – River Views & Night Lights</span>
+                </div>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <div class="timeline-item">
+                        <span class="timeline-time">9 AM</span>
+                        <div class="timeline-activity">
+                            <h4>Shibata</h4>
+                            <p>Historic place to visit by night with a good view from the top.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">12:30 PM</span>
+                        <div class="timeline-activity">
+                            <h4>Eling Park</h4>
+                            <p>Tranquil retreat with panoramic views of Yangtze and Jialing Rivers. Lunch break nearby.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">3 PM</span>
+                        <div class="timeline-activity">
+                            <h4>Longmenhao & Danzishi</h4>
+                            <p>Preserved mansions, artisan shops. Rebuilt waterfront with Ming/Qing history. Sunset
+                                views over Raffles City.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">9 PM</span>
+                        <div class="timeline-activity">
+                            <h4>Nanbin Road Night Walk</h4>
+                            <p>Panoramic city lights along the riverside.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Zhangjiajie Section -->
+    <section id="zhangjiajie" class="city-section">
+        <div class="city-header">
+            <div class="city-image">
+                <img src="Zhangjiajie HD Image.jpg" alt="Zhangjiajie">
+            </div>
+            <div class="city-info">
+                <h2 class="city-name">Zhangjiajie</h2>
+                <p class="city-dates">JAN 12–15 · 4 NIGHTS</p>
+                <p class="city-description">The Avatar Mountains! Otherworldly sandstone pillars rising from mist. One
+                    of China's most spectacular national parks. Perfect for hiking.</p>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <div class="info-card-icon">🏨</div>
+                            <span class="info-card-title">Where to Stay</span>
+                        </div>
+                        <div class="info-card-content">
+                            <strong>Wulingyuan Town</strong> – 10 min from Forest Park East Gate. Most convenient for
+                            hiking.
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <div class="info-card-icon">🍜</div>
+                            <span class="info-card-title">Food Streets</span>
+                        </div>
+                        <div class="info-card-content">
+                            Xibu Street in Wulingyuan, Sanjiaoping in downtown
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fenghuang Section -->
+    <section id="fenghuang" class="city-section">
+        <div class="city-header">
+            <div class="city-image">
+                <img src="https://plus.unsplash.com/premium_photo-1661936340711-8b2300d5f063?w=800&q=80" alt="Fenghuang Ancient Town">
+            </div>
+            <div class="city-info">
+                <h2 class="city-name">Fenghuang</h2>
+                <p class="city-dates">JAN 16–17 · 1 NIGHT</p>
+                <p class="city-description">Phoenix Ancient Town – a perfectly preserved Ming and Qing dynasty riverside town. Wooden stilt houses line the Tuojiang River, with traditional bridges and pagodas creating a timeless atmosphere.</p>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <div class="info-card-icon">🏨</div>
+                            <span class="info-card-title">Where to Stay</span>
+                        </div>
+                        <div class="info-card-content">
+                            <strong>Inside Ancient Town</strong> – Riverside guesthouses with stunning night views over illuminated bridges
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <div class="info-card-icon">📍</div>
+                            <span class="info-card-title">Must-See</span>
+                        </div>
+                        <div class="info-card-content">
+                            Rainbow Bridge, Tuojiang River boat ride, Wanming Pagoda, East Gate Tower, night river walk
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fenghuang Daily Itinerary -->
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 1.5rem;">Daily Itinerary</h3>
+
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div>
+                    <span class="accordion-title">Friday, January 16th</span>
+                    <span class="accordion-date"> – Arrival via Furong</span>
+                </div>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <div class="timeline-item">
+                        <span class="timeline-time">Morning</span>
+                        <div class="timeline-activity">
+                            <h4>HSR to Furong Town</h4>
+                            <p>25 min from Zhangjiajie West. Explore the spectacular waterfall that flows through town.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">Afternoon</span>
+                        <div class="timeline-activity">
+                            <h4>HSR to Fenghuang</h4>
+                            <p>40 min journey. Check into riverside guesthouse, explore the old town.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">Evening</span>
+                        <div class="timeline-activity">
+                            <h4>Night Walk Along Tuojiang River</h4>
+                            <p>Red lanterns illuminate the ancient buildings. Take a boat ride, enjoy riverside bars and cafes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div>
+                    <span class="accordion-title">Saturday, January 17th</span>
+                    <span class="accordion-date"> – Morning Exploration</span>
+                </div>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <div class="timeline-item">
+                        <span class="timeline-time">7 AM</span>
+                        <div class="timeline-activity">
+                            <h4>Sunrise at the River</h4>
+                            <p>Early morning light on the water is magical. Fewer tourists, perfect for photos.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">9 AM</span>
+                        <div class="timeline-activity">
+                            <h4>Explore Ancient Streets</h4>
+                            <p>Visit East Gate Tower, Wanming Pagoda, traditional craft shops.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">Afternoon</span>
+                        <div class="timeline-activity">
+                            <h4>Depart for Changsha</h4>
+                            <p>HSR to Changsha (~2.5hr). Arrive for evening food adventures!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Changsha Section -->
+    <section id="changsha" class="city-section">
+        <div class="city-header">
+            <div class="city-info">
+                <h2 class="city-name">Changsha</h2>
+                <p class="city-dates">JAN 17–18 · 1 NIGHT</p>
+                <p class="city-description">Capital of Hunan Province and birthplace of Chairman Mao. A vibrant modern city famous for its incredible street food scene – especially the legendary stinky tofu! Your final stop before flying home.</p>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <div class="info-card-icon">🏨</div>
+                            <span class="info-card-title">Where to Stay</span>
+                        </div>
+                        <div class="info-card-content">
+                            <strong>Wuyi Square / IFS area</strong> – Near Pozi Street food, easy airport access next morning
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <div class="info-card-icon">🍜</div>
+                            <span class="info-card-title">Food Streets</span>
+                        </div>
+                        <div class="info-card-content">
+                            Pozi Street, Taiping Street, Huogongdian (Fire Palace)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="city-image">
+                <img src="https://images.unsplash.com/photo-1616685129467-7a5291f72141?w=800&q=80" alt="Changsha">
+            </div>
+        </div>
+
+        <!-- Changsha Daily Itinerary -->
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 1.5rem;">Daily Itinerary</h3>
+
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div>
+                    <span class="accordion-title">Saturday, January 17th</span>
+                    <span class="accordion-date"> – Stinky Tofu Night!</span>
+                </div>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <div class="timeline-item">
+                        <span class="timeline-time">5 PM</span>
+                        <div class="timeline-activity">
+                            <h4>Arrive in Changsha</h4>
+                            <p>Check into hotel near Wuyi Square. Quick refresh before food adventure!</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">6 PM</span>
+                        <div class="timeline-activity">
+                            <h4>Huogongdian (Fire Palace)</h4>
+                            <p>Iconic 250-year-old food hall. Try stinky tofu, sugar oil baba, rice noodles – all in one place!</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">8 PM</span>
+                        <div class="timeline-activity">
+                            <h4>Taiping Street Night Market</h4>
+                            <p>Historic pedestrian street with more snacks, shops, and vibrant atmosphere.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">Late Night</span>
+                        <div class="timeline-activity">
+                            <h4>Spicy Crayfish (Optional)</h4>
+                            <p>Changsha's famous late-night dish! Find a local crayfish restaurant near Nanmenkou.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div>
+                    <span class="accordion-title">Sunday, January 18th</span>
+                    <span class="accordion-date"> – Departure Day</span>
+                </div>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <div class="timeline-item">
+                        <span class="timeline-time">8 AM</span>
+                        <div class="timeline-activity">
+                            <h4>Breakfast & Pack</h4>
+                            <p>Grab some rice noodles (米粉) for a classic Changsha breakfast.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">10:30 AM</span>
+                        <div class="timeline-activity">
+                            <h4>Head to Airport</h4>
+                            <p>Changsha Huanghua International Airport. Allow ~45 min from city center.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">12:55 PM</span>
+                        <div class="timeline-activity">
+                            <h4>Flight to Bangkok</h4>
+                            <p>End of an amazing China adventure! 🎉</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hiking Section -->
+    <section id="hiking">
+        <div class="section-header">
+            <p class="section-label">Zhangjiajie</p>
+            <h2 class="section-title">Hiking Routes</h2>
+        </div>
+
+        <div class="hiking-cards">
+            <div class="hiking-card">
+                <div>
+                    <h3 class="hiking-title">Golden Whip Stream → Yuanjiajie</h3>
+                    <div class="hiking-meta">
+                        <span class="hiking-tag challenging">Challenging</span>
+                        <span class="hiking-tag">Full Day</span>
+                        <span class="hiking-tag">11+ km</span>
+                    </div>
+                    <p class="hiking-highlights">Walk along a crystal clear stream through a deep canyon, then climb
+                        steep stone stairs to the famous Avatar floating mountains.</p>
+                    <div class="hiking-route">
+                        <strong>Route:</strong> Forest Park entrance → Golden Whip Stream (2-3hr, 7.5km) → Climb to
+                        Yuanjiajie via Qianlixianghui trail (1hr steep stairs) → Yuanjiajie viewpoints
+                    </div>
+                    <div class="hiking-tip">💡 Watch for wild monkeys along Golden Whip Stream - don't carry visible
+                        food!</div>
+                </div>
+            </div>
+
+            <div class="hiking-card">
+                <div>
+                    <h3 class="hiking-title">Yangjiajie Circuit</h3>
+                    <div class="hiking-meta">
+                        <span class="hiking-tag challenging">Challenging</span>
+                        <span class="hiking-tag">Half Day</span>
+                    </div>
+                    <p class="hiking-highlights">Less crowded, dramatic cliff views, Natural Great Wall formation. Steep
+                        climbs and narrow walkways.</p>
+                    <div class="hiking-route">
+                        <strong>Route:</strong> Natural Great Wall → Wulong Village → Tianbo Mansion → One Step to
+                        Heaven → Air Corridor → Descend (1.5hr downhill)
+                    </div>
+                    <div class="hiking-tip">💡 Rarely visited by tour groups - you may have trails to yourself!</div>
+                </div>
+            </div>
+
+            <div class="hiking-card">
+                <div>
+                    <h3 class="hiking-title">Huangshi Village Loop</h3>
+                    <div class="hiking-meta">
+                        <span class="hiking-tag moderate">Moderate</span>
+                        <span class="hiking-tag">Half Day</span>
+                        <span class="hiking-tag">5km</span>
+                    </div>
+                    <p class="hiking-highlights">Oldest scenic area with stunning 360° panoramic views of pillar
+                        formations. Cable car available to skip stairs.</p>
+                    <div class="hiking-route">
+                        <strong>Route:</strong> Hike up from Golden Whip Stream (1.5hr steep stairs) → 5km loop trail
+                        around plateau → Cable car down (optional)
+                    </div>
+                </div>
+            </div>
+
+            <div class="hiking-card">
+                <div>
+                    <h3 class="hiking-title">Ten-Mile Gallery + Tianzi Mountain</h3>
+                    <div class="hiking-meta">
+                        <span class="hiking-tag moderate">Moderate</span>
+                        <span class="hiking-tag">Half Day</span>
+                    </div>
+                    <p class="hiking-highlights">Sea of peaks, best sunrise/sunset views, easier descent than other
+                        routes.</p>
+                    <div class="hiking-route">
+                        <strong>Route:</strong> Bus to Tianzi Mountain top → Explore viewpoints → Hike down to Ten-Mile
+                        Gallery (1.5hr) → Walk or mini-train through gallery
+                    </div>
+                </div>
+            </div>
+
+            <div class="hiking-card">
+                <div>
+                    <h3 class="hiking-title">Tianmen Mountain</h3>
+                    <div class="hiking-meta">
+                        <span class="hiking-tag moderate">Moderate</span>
+                        <span class="hiking-tag">Full Day</span>
+                        <span class="hiking-tag">Separate Ticket</span>
+                    </div>
+                    <p class="hiking-highlights">World's longest cable car (28 min!), glass skywalk, Tianmen Cave, 99
+                        Bends road, 999 steep steps.</p>
+                    <div class="hiking-route">
+                        <strong>Options:</strong> West Line (4hr) includes glass walkway + cave; East Line adds 2hr
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weather Flexibility -->
+        <div style="margin-top: 4rem;">
+            <div class="section-header">
+                <p class="section-label">Plan Smart</p>
+                <h2 class="section-title">Weather-Based Flexibility</h2>
+            </div>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem;">January weather in Zhangjiajie is
+                unpredictable. Swap activities based on conditions!</p>
+
+            <div class="weather-grid">
+                <div class="weather-card clear">
+                    <div class="weather-icon">☀️</div>
+                    <h3 class="weather-title">Clear Days</h3>
+                    <ul class="weather-activities">
+                        <li>✓ PRIORITIZE: National Forest Park (Avatar Mountains need visibility!)</li>
+                        <li>✓ PRIORITIZE: Yangjiajie for dramatic cliff photos</li>
+                        <li>✓ Arrive at park opening 7am for clearest views</li>
+                    </ul>
+                </div>
+
+                <div class="weather-card foggy">
+                    <div class="weather-icon">🌫️</div>
+                    <h3 class="weather-title">Foggy Days</h3>
+                    <ul class="weather-activities">
+                        <li>✓ Tianmen Mountain – fog creates mystical scenery</li>
+                        <li>✓ Golden Whip Stream – sheltered valley walk</li>
+                        <li>✓ Grand Canyon + Glass Bridge</li>
+                    </ul>
+                </div>
+
+                <div class="weather-card rainy">
+                    <div class="weather-icon">🌧️</div>
+                    <h3 class="weather-title">Rainy/Icy Days</h3>
+                    <ul class="weather-activities">
+                        <li>⚠️ Paths can be slippery – good grip shoes!</li>
+                        <li>⚠️ Cable cars may close in extreme weather</li>
+                        <li>→ Alternative: Yellow Dragon Cave (indoor)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Food Section -->
+    <section id="food">
+        <div class="section-header">
+            <p class="section-label">Culinary Journey</p>
+            <h2 class="section-title">Food Guide</h2>
+        </div>
+
+        <div class="food-grid">
+            <div class="food-card">
+                <div class="food-card-image">
+                    <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&q=80"
+                        alt="Sichuan Hotpot">
+                </div>
+                <div class="food-card-content">
+                    <p class="food-card-city">🌶️ Chengdu</p>
+                    <h3 class="food-card-title">Sichuan Cuisine</h3>
+                    <div class="food-item">
+                        <p class="food-name">Sichuan Hotpot <span class="chinese">火锅</span></p>
+                        <p class="food-desc">Bubbling spicy broth with Sichuan peppercorns. Order 'yuanyangguo' for
+                            half-spicy/half-mild.</p>
+                    </div>
+                    <div class="food-item">
+                        <p class="food-name">Mapo Tofu <span class="chinese">麻婆豆腐</span></p>
+                        <p class="food-desc">Silky tofu in fiery sauce. Try at Chen Mapo Tofu Restaurant (the
+                            original!).</p>
+                    </div>
+                    <div class="food-item">
+                        <p class="food-name">Dan Dan Noodles <span class="chinese">担担面</span></p>
+                        <p class="food-desc">Thin noodles in chili oil with minced pork, peanuts, preserved vegetables.
+                        </p>
+                    </div>
+                    <div class="food-item">
+                        <p class="food-name">Kung Pao Chicken <span class="chinese">宫保鸡丁</span></p>
+                        <p class="food-desc">The original! Chicken with peanuts, dried chilies, Sichuan peppercorns.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-card-image">
+                    <img src="https://images.unsplash.com/photo-1555126634-323283e090fa?w=600&q=80"
+                        alt="Chongqing Hotpot">
+                </div>
+                <div class="food-card-content">
+                    <p class="food-card-city">🔥 Chongqing</p>
+                    <h3 class="food-card-title">Mountain City Flavors</h3>
+                    <div class="food-item">
+                        <p class="food-name">Chongqing Hotpot</p>
+                        <p class="food-desc">Even fierier than Chengdu! Must-try: duck blood, tripe, duck intestines.
+                        </p>
+                    </div>
+                    <div class="food-item">
+                        <p class="food-name">Xiaomian <span class="chinese">小面</span></p>
+                        <p class="food-desc">THE local breakfast! Spicy noodles with 10+ seasonings. ¥8-15 per bowl.</p>
+                    </div>
+                    <div class="food-item">
+                        <p class="food-name">Mao Xue Wang <span class="chinese">毛血旺</span></p>
+                        <p class="food-desc">Blood curd, tripe, and meats in spicy broth. Originated in Ciqikou.</p>
+                    </div>
+                    <div class="food-item">
+                        <p class="food-name">Hot & Sour Noodles <span class="chinese">酸辣粉</span></p>
+                        <p class="food-desc">Chewy sweet potato noodles in sour-spicy soup.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-card-image">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80" alt="Hunan Food">
+                </div>
+                <div class="food-card-content">
+                    <p class="food-card-city">🏔️ Zhangjiajie</p>
+                    <h3 class="food-card-title">Tujia Cuisine</h3>
+                    <div class="food-item">
+                        <p class="food-name">Sanxiaguo <span class="chinese">三下锅</span></p>
+                        <p class="food-desc">THE signature dish! Dry pot with bacon, tofu, radish + tripe. Spicy and
+                            salty.</p>
+                    </div>
+                    <div class="food-item">
+                        <p class="food-name">Tujia Bacon <span class="chinese">土家腊肉</span></p>
+                        <p class="food-desc">Smoked preserved pork – local specialty. Stir-fried with peppers.</p>
+                    </div>
+                    <div class="food-item">
+                        <p class="food-name">Xiangxi Bandit Chicken <span class="chinese">土匪鸡</span></p>
+                        <p class="food-desc">Spicy braised chicken – named after mountain bandits!</p>
+                    </div>
+                    <div class="food-item">
+                        <p class="food-name">Rock Ear Stewed Chicken</p>
+                        <p class="food-desc">Wild lichen from cliffs, stewed with chicken. Non-spicy option!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-card-image">
+                    <img src="https://images.unsplash.com/photo-1762305194201-077e7e23ccf2?w=600&q=80"
+                        alt="Hunan Cuisine - Crispy Fried Tofu">
+                </div>
+                <div class="food-card-content">
+                    <p class="food-card-city">🧈 Changsha</p>
+                    <h3 class="food-card-title">Hunan Cuisine</h3>
+                    <div class="food-item">
+                        <p class="food-name">Stinky Tofu <span class="chinese">臭豆腐</span></p>
+                        <p class="food-desc">Changsha's MOST FAMOUS snack! Black, crispy, fermented. Smells strong,
+                            tastes amazing.</p>
+                    </div>
+                    <div class="food-item">
+                        <p class="food-name">Spicy Crayfish <span class="chinese">口味虾</span></p>
+                        <p class="food-desc">Changsha's favorite late-night food. Best around Nanmenkou.</p>
+                    </div>
+                    <div class="food-item">
+                        <p class="food-name">Chopped Pepper Fish Head <span class="chinese">剁椒鱼头</span></p>
+                        <p class="food-desc">Steamed fish head covered in fiery red chilies.</p>
+                    </div>
+                    <div class="food-item">
+                        <p class="food-name" style="color: var(--accent-gold);">📍 Must Visit: Huogongdian (Fire Palace)
+                        </p>
+                        <p class="food-desc">Iconic 250-year-old food hall with all Hunan snacks!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transport Section -->
+    <section id="transport">
+        <div class="section-header">
+            <p class="section-label">Getting Around</p>
+            <h2 class="section-title">Transport Guide</h2>
+        </div>
+
+        <p style="color: var(--accent-gold); margin-bottom: 2rem;">📌 Book HSR tickets on <a
+                href="https://www.trip.com/trains/" target="_blank" style="color: var(--accent-gold);">Trip.com</a> (15
+            days in advance)</p>
+
+        <div class="transport-timeline">
+            <div class="transport-item">
+                <div class="transport-route">Chengdu → Jiuzhaigou</div>
+                <div class="transport-details">
+                    <span>🚄 Chengdu East → Huanglongjiuzhai</span>
+                    <span>⏱️ ~2hr</span>
+                    <span>💰 ~¥107</span>
+                </div>
+                <div class="transport-details" style="margin-top: 0.5rem;">
+                    <span>🚌 Station to Park: Bus ¥51 (2hr) or Taxi ~¥200-240</span>
+                </div>
+            </div>
+
+            <div class="transport-item">
+                <div class="transport-route">Chengdu → Chongqing</div>
+                <div class="transport-details">
+                    <span>🚄 Chengdu East → Chongqing North</span>
+                    <span>⏱️ 1.5hr</span>
+                    <span>💰 ~¥154</span>
+                    <span>🔄 Every 10-20 min</span>
+                </div>
+            </div>
+
+            <div class="transport-item">
+                <div class="transport-route">Chongqing → Zhangjiajie</div>
+                <div class="transport-details">
+                    <span>🚄 Chongqing → Zhangjiajie West</span>
+                    <span>⏱️ 2-3hr</span>
+                    <span>💰 ~¥150-200</span>
+                </div>
+                <div class="transport-details" style="margin-top: 0.5rem;">
+                    <span>🚌 Station to Wulingyuan: Bus ~¥13 (1hr) or Taxi ~¥100-150 (40 min)</span>
+                </div>
+            </div>
+
+            <div class="transport-item">
+                <div class="transport-route">Zhangjiajie West → Furong</div>
+                <div class="transport-details">
+                    <span>🚄 HSR</span>
+                    <span>⏱️ 25 min</span>
+                    <span>💰 ~¥30</span>
+                </div>
+            </div>
+
+            <div class="transport-item">
+                <div class="transport-route">Furong → Fenghuang</div>
+                <div class="transport-details">
+                    <span>🚄 HSR</span>
+                    <span>⏱️ 35-45 min</span>
+                    <span>💰 ~¥50</span>
+                </div>
+            </div>
+
+            <div class="transport-item">
+                <div class="transport-route">Fenghuang → Changsha</div>
+                <div class="transport-details">
+                    <span>🚄 HSR</span>
+                    <span>⏱️ 2-2.5hr</span>
+                    <span>💰 ~¥175</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hotels Section -->
+    <section id="hotels">
+        <div class="section-header">
+            <p class="section-label">Accommodation</p>
+            <h2 class="section-title">Where to Stay</h2>
+        </div>
+
+        <div class="hotel-card">
+            <p class="hotel-city">Chengdu · Jan 4-9</p>
+            <h3 class="hotel-name">The Hidden House Hotel</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 0.5rem;">Chunxi Road Luomashi Subway Station</p>
+            <p class="hotel-price">$606 AUD for 5 nights ($30.30/person/night)</p>
+        </div>
+
+        <div class="info-grid" style="margin-top: 2rem;">
+            <div class="info-card">
+                <div class="info-card-header">
+                    <div class="info-card-icon">📍</div>
+                    <span class="info-card-title">Jiuzhaigou</span>
+                </div>
+                <div class="info-card-content">
+                    <strong>Zhangzha Town</strong> – Near park entrance
+                    <div class="hotel-tip" style="margin-top: 1rem;">⚠️ DO NOT book in "Jiuzhaigou County" – that's 40km
+                        away!</div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-card-header">
+                    <div class="info-card-icon">📍</div>
+                    <span class="info-card-title">Chongqing</span>
+                </div>
+                <div class="info-card-content">
+                    <strong>Jiefangbei CBD</strong> – Walk to Hongya Cave, food streets<br><br>
+                    <em>For views: Nanbin Road</em> – Night skyline across river
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-card-header">
+                    <div class="info-card-icon">📍</div>
+                    <span class="info-card-title">Zhangjiajie</span>
+                </div>
+                <div class="info-card-content">
+                    <strong>Wulingyuan Town</strong> – 10 min from Forest Park East Gate<br><br>
+                    <em>For Tianmen day:</em> Consider downtown (near cable car)
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-card-header">
+                    <div class="info-card-icon">📍</div>
+                    <span class="info-card-title">Fenghuang</span>
+                </div>
+                <div class="info-card-content">
+                    <strong>Inside/near Ancient Town</strong> – Riverside guesthouses with night views
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-card-header">
+                    <div class="info-card-icon">📍</div>
+                    <span class="info-card-title">Changsha</span>
+                </div>
+                <div class="info-card-content">
+                    <strong>Wuyi Square / IFS area</strong> – Near Pozi Street food, easy airport access
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>China Adventure 2026 · Jan 4–18</p>
+        <p style="margin-top: 0.5rem;">Safe travels! 🧳✈️</p>
+    </footer>
+
+    <script>
+        // Accordion functionality
+        function toggleAccordion(header) {
+            const accordion = header.parentElement;
+            accordion.classList.toggle('open');
+        }
+
+        // Navigation active state
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section[id]');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll for nav links
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
